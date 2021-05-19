@@ -146,6 +146,7 @@ importers:
       '@ethersproject/contracts': ^5.1.1
       '@ethersproject/providers': ^5.1.2
       '@ethersproject/solidity': ^5.1.0
+      '@ethersproject/wallet': ^5.1.0
       '@sveltejs/adapter-node': next
       '@sveltejs/adapter-static': ^1.0.0-next.9
       '@sveltejs/kit': next
@@ -154,9 +155,11 @@ importers:
       '@typescript-eslint/parser': ^4.24.0
       '@urql/core': 1.16.2
       '@urql/devtools': ^2.0.3
+      aes-js: ^3.1.2
       autoprefixer: ^10.2.5
       bech32: ^2.0.0
       bn.js: ^5.2.0
+      byte-base64: ^1.1.0
       cssnano: ^5.0.2
       eslint: ^7.26.0
       eslint-config-prettier: ^8.3.0
@@ -166,14 +169,17 @@ importers:
       ipfs-deploy: ^8.0.1
       ipfs-gateway-emulator: ^4.2.1-ipfs.1
       jolly-roger-common: workspace:*
+      lz-string: ^1.4.4
       postcss: ^8.2.15
       postcss-load-config: ^3.0.1
       prepare-for-web: ^0.1.5
       prettier: ~2.3.0
       prettier-plugin-svelte: ^2.3.0
+      pretty-ms: ^7.0.1
       svelte: ^3.38.2
       svelte-preprocess: ^4.7.3
       sveltejs-adapter-ipfs: ^0.1.1
+      sveltejs-tippy: ^3.0.0
       tailwindcss: ^2.1.2
       tslib: ^2.2.0
       typescript: ^4.2.4
@@ -189,9 +195,15 @@ importers:
       '@ethersproject/contracts': 5.1.1
       '@ethersproject/providers': 5.1.2
       '@ethersproject/solidity': 5.1.0
+      '@ethersproject/wallet': 5.1.0
       '@urql/core': 1.16.2_graphql@15.5.0
       '@urql/devtools': 2.0.3_@urql+core@1.16.2+graphql@15.5.0
+      aes-js: 3.1.2
+      byte-base64: 1.1.0
       graphql: 15.5.0
+      lz-string: 1.4.4
+      pretty-ms: 7.0.1
+      sveltejs-tippy: 3.0.0
       web3w: 0.3.0_b5ca6036183ad2f7fa75d2813463e3af
       web3w-torus-loader: 0.3.0
       web3w-walletconnect-loader: 0.3.0
@@ -519,7 +531,6 @@ packages:
       '@ethersproject/strings': 5.1.0
       '@ethersproject/transactions': 5.1.1
       '@ethersproject/wordlists': 5.1.0
-    dev: true
 
   /@ethersproject/json-wallets/5.1.0:
     resolution: {integrity: sha512-00n2iBy27w8zrGZSiU762UOVuzCQZxUZxopsZC47++js6xUFuI74DHcJ5K/2pddlF1YBskvmMuboEu1geK8mnA==}
@@ -537,7 +548,6 @@ packages:
       '@ethersproject/transactions': 5.1.1
       aes-js: 3.0.0
       scrypt-js: 3.0.1
-    dev: true
 
   /@ethersproject/keccak256/5.1.0:
     resolution: {integrity: sha512-vrTB1W6AEYoadww5c9UyVJ2YcSiyIUTNDRccZIgwTmFFoSHwBtcvG1hqy9RzJ1T0bMdATbM9Hfx2mJ6H0i7Hig==}
@@ -558,7 +568,6 @@ packages:
     dependencies:
       '@ethersproject/bytes': 5.1.0
       '@ethersproject/sha2': 5.1.0
-    dev: true
 
   /@ethersproject/properties/5.1.0:
     resolution: {integrity: sha512-519KKTwgmH42AQL3+GFV3SX6khYEfHsvI6v8HYejlkigSDuqttdgVygFTDsGlofNFchhDwuclrxQnD5B0YLNMg==}
@@ -715,7 +724,6 @@ packages:
       '@ethersproject/signing-key': 5.1.0
       '@ethersproject/transactions': 5.1.1
       '@ethersproject/wordlists': 5.1.0
-    dev: true
 
   /@ethersproject/web/5.1.0:
     resolution: {integrity: sha512-LTeluWgTq04+RNqAkVhpydPcRZK/kKxD2Vy7PYGrAD27ABO9kTqTBKwiOuzTyAHKUQHfnvZbXmxBXJAGViSDcA==}
@@ -734,7 +742,6 @@ packages:
       '@ethersproject/logger': 5.1.0
       '@ethersproject/properties': 5.1.0
       '@ethersproject/strings': 5.1.0
-    dev: true
 
   /@fullhuman/postcss-purgecss/3.1.3:
     resolution: {integrity: sha512-kwOXw8fZ0Lt1QmeOOrd+o4Ibvp4UTEBFQbzvWldjlKv5n+G9sXfIPn1hh63IQIL8K8vbvv1oYMJiIUbuy9bGaA==}
@@ -1202,6 +1209,10 @@ packages:
   /@openzeppelin/contracts/3.4.1:
     resolution: {integrity: sha512-cUriqMauq1ylzP2TxePNdPqkwI7Le3Annh4K9rrpvKfSBB/bdW+Iu1ihBaTIABTAAJ85LmKL5SSPPL9ry8d1gQ==}
     dev: true
+
+  /@popperjs/core/2.9.2:
+    resolution: {integrity: sha512-VZMYa7+fXHdwIq1TDhSXoVmSPEGM/aa+6Aiq3nVVJ9bXr24zScr+NlKFKC3iPljA7ho/GAZr+d2jOf5GIRC30Q==}
+    dev: false
 
   /@protobufjs/utf8/1.1.0:
     resolution: {integrity: sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=}
@@ -1979,7 +1990,10 @@ packages:
 
   /aes-js/3.0.0:
     resolution: {integrity: sha1-4h3xCtbCBTKVvLuNq0Cwnb6ofk0=}
-    dev: true
+
+  /aes-js/3.1.2:
+    resolution: {integrity: sha512-e5pEa2kBnBOgR4Y/p20pskXI74UEz7de8ZGVo58asOtvSVG5YAbJeELPZxOmt+Bnz3rX753YKhfIn4X4l1PPRQ==}
+    dev: false
 
   /agent-base/6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
@@ -2341,7 +2355,7 @@ packages:
   /axios/0.21.1:
     resolution: {integrity: sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==}
     dependencies:
-      follow-redirects: 1.14.1
+      follow-redirects: 1.14.1_debug@4.3.1
     transitivePeerDependencies:
       - debug
     dev: true
@@ -3299,6 +3313,10 @@ packages:
   /builtin-status-codes/3.0.0:
     resolution: {integrity: sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=}
     dev: true
+
+  /byte-base64/1.1.0:
+    resolution: {integrity: sha512-56cXelkJrVMdCY9V/3RfDxTh4VfMFCQ5km7B7GkIGfo4bcPL9aACyJLB0Ms3Ezu5rsHmLB2suis96z4fLM03DA==}
+    dev: false
 
   /byte-size/6.2.0:
     resolution: {integrity: sha512-6EspYUCAPMc7E2rltBgKwhG+Cmk0pDm9zDtF1Awe2dczNUL3YpZ8mTs/dueOTS1hqGWBOatqef4jYMGjln7WmA==}
@@ -5879,16 +5897,6 @@ packages:
     resolution: {integrity: sha1-x7vxJN7ELJ0ZHPuUfQqXeN2YbAw=}
     dependencies:
       imul: 1.0.1
-    dev: true
-
-  /follow-redirects/1.14.1:
-    resolution: {integrity: sha512-HWqDgT7ZEkqRzBvc2s64vSZ/hfOceEol3ac/7tKwzuvEyWx3/4UegXh5oBOIotkGsObyk3xznnSRVADBgWSQVg==}
-    engines: {node: '>=4.0'}
-    peerDependencies:
-      debug: '*'
-    peerDependenciesMeta:
-      debug:
-        optional: true
     dev: true
 
   /follow-redirects/1.14.1_debug@4.3.1:
@@ -8766,6 +8774,11 @@ packages:
       walk-back: 4.0.0
     dev: true
 
+  /lz-string/1.4.4:
+    resolution: {integrity: sha1-wNjq82BZ9wV5bh40SBHPTEmNOiY=}
+    hasBin: true
+    dev: false
+
   /mafmt/6.0.10:
     resolution: {integrity: sha512-FjHDnew6dW9lUu3eYwP0FvvJl9uvNbqfoJM+c1WJcSyutNEIlyu6v3f/rlPnD1cnmue38IjuHlhBdIh3btAiyw==}
     dependencies:
@@ -9947,6 +9960,11 @@ packages:
       lines-and-columns: 1.1.6
     dev: true
 
+  /parse-ms/2.1.0:
+    resolution: {integrity: sha512-kHt7kzLoS9VBZfUsiKjv43mr91ea+U05EyKkEtqp7vNbHxmaVuEqN7XxeEVnGrMtYOAxGrDElSi96K7EgO1zCA==}
+    engines: {node: '>=6'}
+    dev: false
+
   /parse-png/1.1.2:
     resolution: {integrity: sha1-9cKtfHmTSQmGAgooTBmu5FlxH/I=}
     engines: {node: '>=4'}
@@ -10636,6 +10654,13 @@ packages:
     resolution: {integrity: sha1-t+PqQkNaTJsnWdmeDyAesZWALuE=}
     engines: {node: '>= 0.8'}
     dev: true
+
+  /pretty-ms/7.0.1:
+    resolution: {integrity: sha512-973driJZvxiGOQ5ONsFhOF/DtzPMOMtgC11kCpUrPGMTgqp2q/1gwzCquocrN33is0VZ5GFHXZYMM9l6h67v2Q==}
+    engines: {node: '>=10'}
+    dependencies:
+      parse-ms: 2.1.0
+    dev: false
 
   /printj/1.1.2:
     resolution: {integrity: sha512-zA2SmoLaxZyArQTOPj5LXecR+RagfPSU5Kw1qP+jkWeNlrq+eJZyY2oS68SU1Z/7/myXM4lo9716laOFAVStCQ==}
@@ -11427,7 +11452,6 @@ packages:
 
   /scrypt-js/3.0.1:
     resolution: {integrity: sha512-cdwTTnqPu0Hyvf5in5asVdZocVDTNRmR7XEcJuIzMjJeSHybHl7vpB66AzwTaIg6CLSbtjcxc8fqcySfnTkccA==}
-    dev: true
 
   /secp256k1/3.8.0:
     resolution: {integrity: sha512-k5ke5avRZbtl9Tqx/SA7CbY3NF6Ro+Sj9cZxezFzuBlLDmyqPiL8hJJ+EmzD8Ig4LUDByHJ3/iPOVoRixs/hmw==}
@@ -12259,6 +12283,12 @@ packages:
       slash: 3.0.0
     dev: true
 
+  /sveltejs-tippy/3.0.0:
+    resolution: {integrity: sha512-LAfQikm61AeqZW1hCFWUsmGEMmhMHDvrPV0JhbT38Ell9SqBjmFaY//+YKUxaJvx6nLMxGQdlcHA1rDg2Ml8tQ==}
+    dependencies:
+      tippy.js: 6.0.3
+    dev: false
+
   /svgo/2.3.0:
     resolution: {integrity: sha512-fz4IKjNO6HDPgIQxu4IxwtubtbSfGEAJUq/IXyTPIkGhWck/faiiwfkvsB8LnBkKLvSoyNNIY6d13lZprJMc9Q==}
     engines: {node: '>=10.13.0'}
@@ -12566,6 +12596,12 @@ packages:
   /tinycolor2/1.4.2:
     resolution: {integrity: sha512-vJhccZPs965sV/L2sU4oRQVAos0pQXwsvTLkWYdqJ+a8Q5kPFzJTuOFwy7UniPli44NKQGAglksjvOcpo95aZA==}
     dev: true
+
+  /tippy.js/6.0.3:
+    resolution: {integrity: sha512-buQF6HugTA4YeSA/s9xBhu0ferEAx7sRSn45G+Juh3p+Dz3vEKfxtqdg6JUnHIWDCV/r0u8Lrobs9AB4dtYcUQ==}
+    dependencies:
+      '@popperjs/core': 2.9.2
+    dev: false
 
   /tmp/0.0.33:
     resolution: {integrity: sha512-jRCJlojKnZ3addtTOjdIqoRuPEKBvNXcGYqzO6zWZX8KfKEpnGY5jfggJQ3EjKuu8D4bJRr0y+cYJFmYbImXGw==}
