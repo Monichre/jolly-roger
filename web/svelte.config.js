@@ -1,16 +1,13 @@
 import preprocess from 'svelte-preprocess';
-import adapter_ipfs from 'sveltejs-adapter-ipfs';
+import static from '@sveltejs/adapter-static';
+// import adapter_ipfs from 'sveltejs-adapter-ipfs';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   preprocess: preprocess(),
 
   kit: {
-    adapter: adapter_ipfs({
-      removeBuiltInServiceWorkerRegistration: true,
-      injectPagesInServiceWorker: true,
-      injectDebugConsole: true,
-    }),
+    adapter: static(),
     target: '#svelte',
     trailingSlash: 'ignore',
   },
