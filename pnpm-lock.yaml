@@ -148,8 +148,8 @@ importers:
       '@ethersproject/providers': ^5.1.2
       '@ethersproject/solidity': ^5.1.0
       '@sveltejs/adapter-node': next
-      '@sveltejs/adapter-static': ^1.0.0-next.9
-      '@sveltejs/kit': next
+      '@sveltejs/adapter-static': ^1.0.0-next.11
+      '@sveltejs/kit': ^1.0.0-next.109
       '@tailwindcss/jit': ^0.1.18
       '@typescript-eslint/eslint-plugin': ^4.24.0
       '@typescript-eslint/parser': ^4.24.0
@@ -202,7 +202,7 @@ importers:
       wonka: 4.0.15
     devDependencies:
       '@sveltejs/adapter-node': 1.0.0-next.22_@sveltejs+kit@1.0.0-next.109
-      '@sveltejs/adapter-static': 1.0.0-next.9
+      '@sveltejs/adapter-static': 1.0.0-next.11_@sveltejs+kit@1.0.0-next.109
       '@sveltejs/kit': 1.0.0-next.109_svelte@3.38.2
       '@tailwindcss/jit': 0.1.18_postcss@8.2.15+tailwindcss@2.1.2
       '@typescript-eslint/eslint-plugin': 4.24.0_59c9e933fd1a489015de5df6809ac2f2
@@ -1201,7 +1201,7 @@ packages:
       rollup: ^1.20.0||^2.0.0
     dependencies:
       estree-walker: 2.0.2
-      picomatch: 2.2.3
+      picomatch: 2.3.0
     dev: true
 
   /@sentry/core/5.30.0:
@@ -1318,8 +1318,12 @@ packages:
       '@sveltejs/kit': 1.0.0-next.109_svelte@3.38.2
     dev: true
 
-  /@sveltejs/adapter-static/1.0.0-next.9:
-    resolution: {integrity: sha512-yqZ+4dzi+2+2jDPHCrI7WrLdXyQ/0U56a7aFdepmodpvpxhazF203D1ez+AtTo27FjMmHjfI+q0O2FivUOosxg==}
+  /@sveltejs/adapter-static/1.0.0-next.11_@sveltejs+kit@1.0.0-next.109:
+    resolution: {integrity: sha512-flqdt6nJxzRPfhYDZbvrw1iFmc87E3rLJ/Rz7K+d4or/slyqHSxH+yOmQ7CJKej5DidliuTpAOvulithuDc0yw==}
+    peerDependencies:
+      '@sveltejs/kit': 1.0.0-next.109
+    dependencies:
+      '@sveltejs/kit': 1.0.0-next.109_svelte@3.38.2
     dev: true
 
   /@sveltejs/kit/1.0.0-next.109_svelte@3.38.2:
@@ -9857,6 +9861,11 @@ packages:
 
   /picomatch/2.2.3:
     resolution: {integrity: sha512-KpELjfwcCDUb9PeigTs2mBJzXUPzAuP2oPcA989He8Rte0+YUAjw1JVedDhuTKPkHjSYzMN3npC9luThGYEKdg==}
+    engines: {node: '>=8.6'}
+    dev: true
+
+  /picomatch/2.3.0:
+    resolution: {integrity: sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==}
     engines: {node: '>=8.6'}
     dev: true
 
