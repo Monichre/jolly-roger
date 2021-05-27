@@ -3,6 +3,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
 const {spawn} = require('child_process');
+const dotenv = require('dotenv');
 
 const commandlineArgs = process.argv.slice(2);
 
@@ -10,6 +11,14 @@ function wait(numSeconds) {
   return new Promise((resolve) => {
     setTimeout(resolve, numSeconds * 1000);
   });
+}
+
+function useDotEnv(...paths) {
+  for (const p of paths) {
+    dotenv.config({
+      path: p,
+    });
+  }
 }
 
 function parseArgs(rawArgs, numFixedArgs, expectedOptions) {
@@ -126,6 +135,14 @@ async function performAction(rawArgs) {
     await execute(`dotenv -- npm --prefix subgraph run setup`);
     await execute(`wait-on web/src/lib/contracts.json`);
     await execute(`dotenv -- npm --prefix subgraph run dev ../contracts/deployments/localhost mainnet`);
+  } else if (firstArg === 'subgraph:upload') {
+    const {options} = parseArgs(args, 0, {name: 'string', subgraph: 'string'});
+    useDotEnv('.env', 'subgraph/.env');
+    console.log('waiting on ipfs node...');
+    await execute(`wait-on http-get://${process.env.GRAPH_NODE_GRAPHQL}`);
+    await execute(
+      `subgraph-deploy -s ${options.name} -f ${options.subgraph} -i ${process.env.IPFS_URL}/api -g http://${process.env.GRAPH_NODE_API}`
+    );
   } else if (firstArg === 'subgraph:deploy') {
     const {fixedArgs, extra} = parseArgs(args, 1, {});
     const network = fixedArgs[0] || 'localhost';
@@ -135,7 +152,6 @@ async function performAction(rawArgs) {
       deployCommand = 'hosted:deploy';
     }
     await execute(`wait-on web/src/lib/contracts.json`);
-    console.log({env});
     await execute(`${env}npm --prefix subgraph run ${deployCommand} ../contracts/deployments/${network}`);
   } else if (firstArg === 'web:dev') {
     const {fixedArgs, options} = parseArgs(args, 1, {skipContracts: 'boolean'});
@@ -194,6 +210,7 @@ async function performAction(rawArgs) {
     execute(`newsh "npm run web:dev -- --skipContracts"`);
     execute(`newsh "npm run contracts:dev -- --reset"`);
     execute(`newsh "npm run subgraph:dev"`);
+    await execute('npm run subgraph:upload:eip721');
     await performAction(['common:build']);
     await performAction(['contracts:seed', 'localhost', '--waitContracts']);
   } else if (firstArg === 'start') {
@@ -203,6 +220,7 @@ async function performAction(rawArgs) {
     execute(`newsh "npm run web:dev -- --skipContracts"`);
     execute(`newsh "npm run contracts:dev -- --reset"`);
     execute(`newsh "npm run subgraph:dev"`);
+    await execute('npm run subgraph:upload:eip721');
     await performAction(['common:build']);
     await performAction(['contracts:seed', 'localhost', '--waitContracts']);
   }

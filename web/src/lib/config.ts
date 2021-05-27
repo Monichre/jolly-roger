@@ -49,6 +49,7 @@ if (!nodeUrl) {
 }
 
 const graphNodeURL = import.meta.env.VITE_THE_GRAPH_HTTP as string;
+const nftGraphNodeURL = import.meta.env.VITE_THE_GRAPH_NFT_HTTP as string;
 
 const globalQueryParams = ['debug', 'log', 'subgraph', 'ethnode', '_d_eruda'];
-export {finality, nodeUrl, chainId, blockTime, chainName, graphNodeURL, globalQueryParams};
+export {finality, nodeUrl, chainId, blockTime, chainName, graphNodeURL, nftGraphNodeURL, globalQueryParams};
