@@ -1,5 +1,6 @@
 import {initWeb3W} from 'web3w';
 import {WalletConnectModuleLoader} from 'web3w-walletconnect-loader';
+import {WalletConnectV2ModuleLoader} from 'web3w-walletconnect-v2-loader';
 import {contractsInfos} from '$lib/blockchain/contracts';
 import {notifications} from '../web/notifications';
 import {webWalletURL, finality, fallbackProviderOrUrl, chainId, localDev} from '$lib/config';
@@ -26,7 +27,32 @@ const walletStores = initWeb3W({
     new WalletConnectModuleLoader({
       nodeUrl: typeof fallbackProviderOrUrl === 'string' ? fallbackProviderOrUrl : undefined,
       chainId,
-      infuraId: 'bc0bdd4eaac640278cdebc3aa91fabe4',
+      infuraId: 'bc0bdd4eaac640278cdebc3aa91fabe4', // TODO env variable
+    }),
+    new WalletConnectV2ModuleLoader({
+      chainId: parseInt(chainId),
+      rpc: {
+        infuraId: 'bc0bdd4eaac640278cdebc3aa91fabe4', // TODO env variable
+        // custom?: {
+        //   [chainId: number]: string;
+        // }
+      },
+      client: {
+        // name: 'string',
+        projectId: '355ea1b63e40657f5b5ce459292375bd', // TODO env variable ?
+        // controller: false, true ?
+        metadata: {
+          name: 'Jolly Roger',
+          description: 'A Production Ready Template for Decentralised Applications.',
+          url: 'https://jolly-roger.eth.limo',
+          icons: ['https://jolly-roger.eth.limo/images/logo.svg'],
+        },
+        relayUrl: 'wss://relay.walletconnect.com',
+        // logger: string | Logger;
+        // keychain?: IKeyChain;
+        // storage?: IKeyValueStorage;
+        // storageOptions?: KeyValueStorageOptions;
+      },
     }),
   ],
   fallbackNode: fallbackProviderOrUrl,
