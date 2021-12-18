@@ -19,6 +19,7 @@
     "@sentry/tracing": "^6.16.1",
     "@urql/core": "2.3.6",
     "@urql/devtools": "^2.0.3",
+    "buffer": "^6.0.3",
     "graphql": "^16.2.0",
     "named-logs": "^0.1.0",
     "web3w": "^0.3.2-beta.17",

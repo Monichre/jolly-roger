@@ -10,6 +10,16 @@ import {chainTempo} from '$lib/blockchain/chainTempo';
 import * as Sentry from '@sentry/browser';
 import {get} from 'svelte/store';
 
+// ----------------------------------------------------------------------------------------------------------------------
+// unfortunately this is needed because walletconnect-v2 depends on libraries that themselves relies on polyfills (pino)
+// ----------------------------------------------------------------------------------------------------------------------
+import {browser} from '$app/env';
+import {Buffer} from 'buffer';
+if (browser) {
+  window.Buffer = Buffer;
+}
+// ----------------------------------------------------------------------------------------------------------------------
+
 const walletStores = initWeb3W({
   chainConfigs: get(contractsInfos),
   builtin: {autoProbe: true},
@@ -31,12 +41,15 @@ const walletStores = initWeb3W({
     }),
     new WalletConnectV2ModuleLoader({
       chainId: parseInt(chainId),
-      rpc: {
-        infuraId: 'bc0bdd4eaac640278cdebc3aa91fabe4', // TODO env variable
-        // custom?: {
-        //   [chainId: number]: string;
-        // }
-      },
+      rpc: webWalletURL
+        ? {
+            custom: {
+              [chainId]: webWalletURL,
+            },
+          }
+        : {
+            infuraId: 'bc0bdd4eaac640278cdebc3aa91fabe4', // TODO env variable
+          },
       client: {
         // name: 'string',
         projectId: '355ea1b63e40657f5b5ce459292375bd', // TODO env variable ?

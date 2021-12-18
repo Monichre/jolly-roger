@@ -161,6 +161,7 @@ importers:
       autoprefixer: ^10.4.0
       bech32: ^2.0.0
       bn.js: ^5.2.0
+      buffer: ^6.0.3
       cssnano: ^5.0.13
       eslint: ^8.5.0
       eslint-config-prettier: ^8.3.0
@@ -200,6 +201,7 @@ importers:
       '@sentry/tracing': 6.16.1
       '@urql/core': 2.3.6_graphql@16.2.0
       '@urql/devtools': 2.0.3_@urql+core@2.3.6+graphql@16.2.0
+      buffer: 6.0.3
       graphql: 16.2.0
       named-logs: 0.1.0
       web3w: 0.3.2-beta.17_7cfc4f7162cd950c0fd5c893fc3e8a45
@@ -3746,7 +3748,6 @@ packages:
 
   /base64-js/1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
-    dev: true
 
   /basic-auth/2.0.1:
     resolution: {integrity: sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg==}
@@ -4112,7 +4113,6 @@ packages:
     dependencies:
       base64-js: 1.5.1
       ieee754: 1.2.1
-    dev: true
 
   /bufferutil/4.0.3:
     resolution: {integrity: sha512-yEYTwGndELGvfXsImMBLop58eaGW+YdONi1fNjTINSY98tmMmFijBG6WXgdkfuLNt4imzQNtIE+eBp1PVpMCSw==}
@@ -8064,7 +8064,6 @@ packages:
 
   /ieee754/1.2.1:
     resolution: {integrity: sha512-dcyqhDvX1C46lXZcVqCpK+FtMRQVdIMN6/Df5js2zouUsqG7I6sFxitIC+7KYK29KdXOLHdu9zL4sFnoVQnqaA==}
-    dev: true
 
   /ignore/4.0.6:
     resolution: {integrity: sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg==}
